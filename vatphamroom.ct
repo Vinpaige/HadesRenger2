@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable>
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1807617754</ID>
+      <Description>"Lấy Vật Phẩm"</Description>
+      <LastState/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(XY,100)
+createthread(XY)
+globalalloc(string,256)
+globalalloc(string1,256)
+globalalloc(soluongvp,8)
+globalalloc(idvatpham,8)
+luacall(writeString("string",'{"role_id":'..readInteger("[libiworld.g_nHomeGardenSaveVersion+5754]+8")..',"itemid":'..readInteger("idvatpham")..',"itemnum":'..readInteger("soluongvp")..'}'))
+string1:
+db 'DEVELOPERSTORE_EXTRASTOREITEM_TOHOST'
+
+XY:
+pushad
+push string
+push string1
+call libSandboxEngine.SandBoxManager::sendToHost
+popad
+ret
+[DISABLE]
+
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1807617763</ID>
+          <Description>"Số Lượng"</Description>
+          <LastState Value="9999" RealAddress="078E0200"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>soluongvp</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1807617764</ID>
+          <Description>"ID Vật Phẩm"</Description>
+          <LastState Value="1" RealAddress="078E0210"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>idvatpham</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1807617762</ID>
+      <Description>""</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(XY,100)
+createthread(XY)
+globalalloc(string,256)
+globalalloc(string1,256)
+luacall(writeString("string",'{"role_id":'..readInteger("[libSandboxEngine.g_WorldMgr]+8C")..',"itemid":11311,"itemnum":999}'))
+string1:
+db 'DEVELOPERSTORE_EXTRASTOREITEM_TOHOST'
+
+XY:
+pushad
+push string
+push string1
+call libSandboxEngine.SandBoxManager::sendToHost
+popad
+push #1
+call kernel32.sleep
+jmp XY
+retn
+[DISABLE]
+XY:
+retn
+
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+</CheatTable>
